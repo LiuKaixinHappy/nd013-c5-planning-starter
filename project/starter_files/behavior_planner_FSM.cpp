@@ -77,7 +77,7 @@ double BehaviorPlannerFSM::get_look_ahead_distance(const State& ego_state) {
   // TODO-Lookahead: One way to find a reasonable lookahead distance is to find
   // the distance you will need to come to a stop while traveling at speed V and
   // using a comfortable deceleration.
-  auto look_ahead_distance = (volocity_mag * volocity_mag) / (2 * accel_mag);  // <- Fix This
+  auto look_ahead_distance = (velocity_mag * velocity_mag) / (2 * accel_mag);  // <- Fix This
 
   // LOG(INFO) << "Calculated look_ahead_distance: " << look_ahead_distance;
 
@@ -140,7 +140,7 @@ State BehaviorPlannerFSM::state_transition(const State& ego_state, State goal,
       //
       auto ang = goal.rotation.yaw + M_PI;
       goal.location.x += _stop_line_buffer * std::cos(ang);  // <- Fix This
-      goal.location.y += _stop_line_buffer * std:sin(ang);  // <- Fix This
+      goal.location.y += _stop_line_buffer * std::sin(ang);  // <- Fix This
 
       // LOG(INFO) << "BP- new STOP goal at: " << goal.location.x << ", "
       //          << goal.location.y;
@@ -155,8 +155,8 @@ State BehaviorPlannerFSM::state_transition(const State& ego_state, State goal,
       // that we know we are in nominal state and we can continue freely?
       // Remember that the speed is a vector
       // HINT: _speed_limit * std::sin/cos (goal.rotation.yaw);
-      goal.velocity.x = _speed_limit * std::cos(goal.rotation.yam);  // <- Fix This
-      goal.velocity.y = _speed_limit * std::cos(goal.rotation.yam);  // <- Fix This
+      goal.velocity.x = _speed_limit * std::cos(goal.rotation.yaw);  // <- Fix This
+      goal.velocity.y = _speed_limit * std::cos(goal.rotation.yaw);  // <- Fix This
       goal.velocity.z = 0;
     }
 
